@@ -76,7 +76,7 @@ class Aluno(Base):
     def __str__(self):
         return self.turma
 
-class Campo_experiencia(Base):
+class CampoExperiencia(Base):
     nome = models.CharField(max_length=500)
 
     class Meta:
@@ -88,7 +88,7 @@ class Campo_experiencia(Base):
         return self.nome
 
 class Objetivo(Base):
-    campo_experiencia = models.ForeignKey(Campo_experiencia, related_name='objetivos', on_delete=models.CASCADE)
+    campo_experiencia = models.ForeignKey(CampoExperiencia, related_name='objetivos', on_delete=models.CASCADE)
     descricao = models.TextField()
     codigo = models.CharField(max_length=100)
 
