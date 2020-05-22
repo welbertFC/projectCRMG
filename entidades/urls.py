@@ -1,0 +1,17 @@
+from django.urls import path
+from django.contrib import admin
+from rest_framework.routers import SimpleRouter
+from .views import EscolaViewSet, ProfessorViewSet, TurmaViewSet, AlunoViewSet, CampoExperienciaViewSet, ObjetivoViewSet, AvaliacaoViewSet
+
+router = SimpleRouter()
+router.register('escola', EscolaViewSet)
+router.register('professor', ProfessorViewSet)
+router.register('turma', TurmaViewSet)
+router.register('aluno', AlunoViewSet)
+router.register('campo_experiencia', CampoExperienciaViewSet)
+router.register('objetivo', ObjetivoViewSet)
+router.register('avaliacao', AvaliacaoViewSet)
+
+
+urlpatterns = [ ]
+    
