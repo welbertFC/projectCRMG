@@ -1,12 +1,12 @@
 from django.db import models
 
 class Base(models.Model):
-    datatime_create = models.DateTimeField(auto_now_add=True)
-    atualizacao = models.DateTimeField(auto_now_add=True)
+    criacao = models.DateTimeField(auto_now_add=True)
+    atualizacao = models.DateTimeField(auto_now=True)
     ativo = models.BooleanField(default=True)
 
-class Meta:
-    abstract = True
+    class Meta:
+        abstract = True
 
 class Escola(Base):
     nome = models.CharField(max_length=300)
@@ -22,6 +22,7 @@ class Escola(Base):
     class Meta:
         verbose_name = 'Escola'
         verbose_name_plural = 'Escolas'
+        ordering = ['id']
 
     def __str__(self):
         return self.nome
@@ -42,7 +43,7 @@ class Professor(Base):
         ordering = ['id']
 
     def __str__(self):
-        return self.escola
+        return self.nome
 
 class Turma(Base):
     professor = models.ForeignKey(Professor, related_name='turmas', on_delete=models.CASCADE)
@@ -56,7 +57,7 @@ class Turma(Base):
         ordering = ['id']
 
     def __str__(self):
-        return self.professor
+        return self.nome
 
 class Aluno(Base):
     turma = models.ForeignKey(Turma, related_name='alunos', on_delete=models.CASCADE)
@@ -74,7 +75,7 @@ class Aluno(Base):
         ordering = ['id']
 
     def __str__(self):
-        return self.turma
+        return self.nome
 
 class CampoExperiencia(Base):
     nome = models.CharField(max_length=500)
@@ -95,15 +96,15 @@ class Objetivo(Base):
     class Meta:
         verbose_name = 'objetivo'
         verbose_name_plural = 'objetivos'
-        ordering = ['id']
+        ordering = ['descricao']
 
     def __str__(self):
-        return self.campo_experiencia
+        return self.descricao
 
 class Avaliacao(Base):
     professor = models.ForeignKey(Professor, related_name='avaliacoes', on_delete=models.PROTECT)
     aluno = models.ForeignKey(Aluno, related_name='avaliacoes', on_delete=models.PROTECT)
-    objetivo = models.ForeignKey(Objetivo, related_name='avaliacoes', on_delete=models.PROTECT)
+    campo_experiencia = models.ForeignKey(CampoExperiencia, related_name='campo_experiencia', on_delete=models.PROTECT)
     avaliacao = models.CharField(max_length=10)
     observacao = models.TextField()
 
@@ -113,7 +114,7 @@ class Avaliacao(Base):
         ordering = ['id']
 
     def __str__(self):
-        return self.aluno
+        return self.avaliacao
 
     
 

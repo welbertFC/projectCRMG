@@ -15,81 +15,88 @@ class EscolaSerializer(serializers.ModelSerializer):
             'email',
             'tipo',
             'user',
-            'senha',
-            'datatime_create'
+            'criacao',
+            'senha'
+            
         )
 
 class ProfessorSerializer(serializers.ModelSerializer):
-    model = Professor
-    fields = (
-        'id',
-        'escola',
-        'nome',
-        'cpf',
-        'telefone',
-        'email',
-        'datanasc',
-        'user',
-        'senha',
-        'datatime_create'
+    class Meta:
+        model = Professor
+        fields = (
+            'id',
+            'escola',
+            'nome',
+            'cpf',
+            'telefone',
+            'email',
+            'datanasc',
+            'user',
+            'senha',
+            'criacao'
 
-    )
+        )
 
 class TurmaSerializer(serializers.ModelSerializer):
-    model = Turma
-    fields = (
-        'id',
-        'professor',
-        'nome',
-        'descricao',
-        'periodo',
-        'datatime_create'
-    )
+    class Meta:
+        model = Turma
+        fields = (
+            'id',
+            'professor',
+            'nome',
+            'descricao',
+            'periodo',
+            'criacao'
+        )
 
 class AlunoSerializer(serializers.ModelSerializer):
-    model = Aluno
-    fields = (
-        'id',
-        'turma',
-        'professor',
-        'nome',
-        'matricula',
-        'datanasc',
-        'sexo',
-        'nome_responsavel',
-        'telefone_responsavel',
-        'datatime_create'
-    )
+    class Meta:
+        model = Aluno
+        fields = (
+            'id',
+            'turma',
+            'professor',
+            'nome',
+            'matricula',
+            'datanasc',
+            'sexo',
+            'nome_responsavel',
+            'telefone_responsavel',
+            'criacao'
+        )
 
 class CampoExperienciaSerializer(serializers.ModelSerializer):
-    model = CampoExperiencia
-    fields = (
-        'id',
-        'nome',
-        'datatime_create'
-    )
+    class Meta:
+        model = CampoExperiencia
+        fields = (
+            'id',
+            'nome',
+            'criacao'
+        )
 
 class ObjetivoSerializer(serializers.ModelSerializer):
-    model = Objetivo
-    fields = (
-        'id',
-        'campo_experiencia',
-        'descricao',
-        'codigo',
-        'datatime_create'
-    )
+    class Meta:
+        model = Objetivo
+        fields = (
+            'id',
+            'campo_experiencia',
+            'descricao',
+            'codigo',
+            'criacao'
+        )
 class AvaliacaoSerializer(serializers.ModelSerializer):
-    model = Avaliacao
-    fields = (
-        'id',
-        'professor',
-        'aluno',
-        'objetivo',
-        'avaliacao',
-        'observacao',
-        'datatime_create'
+    class Meta:
+        model = Avaliacao
+        fields = (
+            'id',
+            'professor',
+            'aluno',
+            'campo_experiencia',
+            'avaliacao',
+            'observacao',
+            'criacao'
 
-    )
+        )
 
 
 

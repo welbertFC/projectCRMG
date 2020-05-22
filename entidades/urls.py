@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib import admin
 from rest_framework.routers import SimpleRouter
-from .views import EscolaViewSet, ProfessorViewSet, TurmaViewSet, AlunoViewSet, CampoExperienciaViewSet, ObjetivoViewSet, AvaliacaoViewSet
+from entidades.views import EscolaViewSet, ProfessorViewSet, TurmaViewSet, AlunoViewSet, CampoExperienciaViewSet, ObjetivoViewSet, AvaliacaoViewSet
 
 router = SimpleRouter()
 router.register('escola', EscolaViewSet)
