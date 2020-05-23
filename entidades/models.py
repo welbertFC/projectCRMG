@@ -104,7 +104,8 @@ class Objetivo(Base):
 class Avaliacao(Base):
     professor = models.ForeignKey(Professor, related_name='avaliacoes', on_delete=models.PROTECT)
     aluno = models.ForeignKey(Aluno, related_name='avaliacoes', on_delete=models.PROTECT)
-    campo_experiencia = models.ForeignKey(CampoExperiencia, related_name='campo_experiencia', on_delete=models.PROTECT)
+    campo_experiencia = models.ForeignKey(CampoExperiencia, related_name='avaliacoes', on_delete=models.PROTECT)
+    objetivo = models.ForeignKey(Objetivo, related_name='avaliacoes', on_delete=models.PROTECT)
     avaliacao = models.CharField(max_length=10)
     observacao = models.TextField()
 

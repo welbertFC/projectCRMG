@@ -92,6 +92,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
             'professor',
             'aluno',
             'campo_experiencia',
+            'objetivo',
             'avaliacao',
             'observacao',
             'criacao'

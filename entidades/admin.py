@@ -75,6 +75,7 @@ class AvaliacaoAdmin(admin.ModelAdmin):
         'professor',
         'aluno',
         'campo_experiencia',
+        'objetivo',
         'avaliacao',
         'observacao'
     )
