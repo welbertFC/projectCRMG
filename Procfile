@@ -1,1 +1,1 @@
-web: gunicorn entidades.wsgi
+web: gunicorn CRMG.wsgi
