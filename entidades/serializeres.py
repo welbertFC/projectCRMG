@@ -80,13 +80,11 @@ class ObjetivoSerializer(serializers.ModelSerializer):
         )
 
 class CampoExperienciaSerializer(serializers.ModelSerializer):
-    objetivo = ObjetivoSerializer(read_only=True)
     class Meta:
         model = CampoExperiencia
         fields = (
             'id',
             'nome',
-            'objetivo',
             'criacao'
         )
         
