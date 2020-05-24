@@ -66,21 +66,7 @@ class AlunoSerializer(serializers.ModelSerializer):
             'criacao'
         )
 
-
-
-class ObjetivoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Objetivo
-        fields = (
-            'id',
-            'campo_experiencia',
-            'descricao',
-            'codigo',
-            'criacao'
-        )
-
 class CampoExperienciaSerializer(serializers.ModelSerializer):
-    objetivo = ObjetivoSerializer(many=False, read_only=True)
     class Meta:
         model = CampoExperiencia
         fields = (
@@ -89,6 +75,18 @@ class CampoExperienciaSerializer(serializers.ModelSerializer):
             'objetivo',
             'criacao'
         )
+
+class ObjetivoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Objetivo
+        fields = (
+            'id',
+            'campo_experiencia',
+            'descricao',
+            'codigo2',
+            'criacao'
+        )
+
         
 class AvaliacaoSerializer(serializers.ModelSerializer):
     class Meta:
