@@ -14,4 +14,3 @@ router.register('avaliacao', AvaliacaoViewSet)
 
 
 urlpatterns = [ ]
-    
