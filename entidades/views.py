@@ -23,7 +23,7 @@ class AlunoViewSet(viewsets.ModelViewSet):
 
 class CampoExperienciaViewSet(viewsets.ModelViewSet):
     queryset = CampoExperiencia.objects.all()
-    serializer_class = CampoExperiencia
+    serializer_class = CampoExperienciaSerializer
 
 class ObjetivoViewSet(viewsets.ModelViewSet):
     queryset = Objetivo.objects.all()
