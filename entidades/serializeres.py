@@ -85,8 +85,9 @@ class ObjetivoSerializer(serializers.ModelSerializer):
             'campo_experiencia',
             'descricao',
             'codigo',
-            'criacao',
-            'experiencia'
+            'experiencia',
+            'criacao'
+            
         )
 
         
