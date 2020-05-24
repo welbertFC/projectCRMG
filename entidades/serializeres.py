@@ -1,5 +1,6 @@
 from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Professor, Turma
 from rest_framework import serializers
+from .serializeres import ObjetivoSerializer
 
 
 class EscolaSerializer(serializers.ModelSerializer):
@@ -66,6 +67,7 @@ class AlunoSerializer(serializers.ModelSerializer):
         )
 
 class CampoExperienciaSerializer(serializers.ModelSerializer):
+    objetivos = ObjetivoSerializer(many=True, read_only=True)
     class Meta:
         model = CampoExperiencia
         fields = (
