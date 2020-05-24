@@ -91,6 +91,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Avaliacao
         fields = (
+
             'id',
             'professor',
             'aluno',

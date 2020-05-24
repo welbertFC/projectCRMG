@@ -83,7 +83,7 @@ class CampoExperiencia(Base):
     class Meta:
         verbose_name = 'campo experiencia'
         verbose_name_plural = 'campos experiencias'
-        ordering = ['id']
+        ordering = ['nome']
 
     def __str__(self):
         return self.nome
