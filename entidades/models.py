@@ -99,7 +99,7 @@ class Objetivo(Base):
         ordering = ['descricao']
 
     def __str__(self):
-        return self.descricao
+        return self.codigo
 
 class Avaliacao(Base):
     professor = models.ForeignKey(Professor, related_name='avaliacoes', on_delete=models.PROTECT)
