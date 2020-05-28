@@ -2,8 +2,6 @@ from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Profes
 from rest_framework import serializers
 
 
-
-
 class EscolaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Escola
@@ -79,14 +77,12 @@ class ObjetivoSerializer(serializers.ModelSerializer):
         )
 
 class CampoExperienciaSerializer(serializers.ModelSerializer):  
-    objetivos = ObjetivoSerializer(many=True, read_only=True)
     class Meta:
         model = CampoExperiencia
         fields = (
             'id',
             'nome',
-            'criacao',
-            'objetivos'
+            'criacao'
         )
 
         
