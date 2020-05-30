@@ -102,7 +102,13 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 
         )
 
+class LoginEscolaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Escola
+        fields = (
 
-
+            'user',
+            'senha'
+        )
 
 
