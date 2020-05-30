@@ -60,7 +60,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'CRMG.urls'
@@ -82,6 +81,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CRMG.wsgi.application'
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    
+    'crmg.herokuapp.com',
+    'http://crmg.herokuapp.com/',
+    'http://crmg.herokuapp.com/api/v1/',
+    'https://crmg.herokuapp.com/api/v1/aluno/',
+    'https://crmg.herokuapp.com/api/v1/aluno',
+] 
 
 
 # Database
@@ -136,7 +146,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-CORS_ORIGIN_WHITELIST = 'crmg.herokuapp.com',
+
 
 
 
