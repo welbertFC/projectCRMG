@@ -128,7 +128,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             Q(senha=senha)
         )
 
-        if validacao.count() ==1:
+        if validacao.exists() and validacao.count() ==1:
             validacao = validacao.first()
         else:
             raise ValidationError("Usuario ou senha incorreto")
