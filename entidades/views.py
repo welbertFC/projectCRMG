@@ -40,12 +40,13 @@ class AvaliacaoViewSet(viewsets.ModelViewSet):
 class LoginEscolaViewAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = LoginEscolaSerializer
+    queryset = Escola.objects.all()
 
     def post(self, request, *args, **kwargs):
         data = request.data
         serializer = LoginEscolaSerializer(data=data)
-        queryset = Escola.objects.all()
-        serializer_escola = EscolaSerializer(queryset)
+        escola = Escola.objects.all()
+        serializer_escola = EscolaSerializer(escola)
         if serializer.is_valid(raise_exception=True):
             new_data = serializer.data, serializer_escola.data
             return Response(new_data, status=HTTP_200_OK)
