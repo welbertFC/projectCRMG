@@ -108,7 +108,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 class LoginEscolaSerializer(serializers.ModelSerializer):
     user = CharField(required=False, allow_blank=True)
     senha = CharField(required=False, allow_blank=True)
-    id_escola = CharField(required=False, allow_blank=True)
+    id.__str__ = CharField(required=False, allow_blank=True)
     class Meta:
         model = Escola
         fields = (
