@@ -1,5 +1,6 @@
 from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Professor, Turma
 from rest_framework import serializers
+from rest_framework.serializers import CharField, ValidationError
 
 
 class EscolaSerializer(serializers.ModelSerializer):
@@ -103,6 +104,8 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         )
 
 class LoginEscolaSerializer(serializers.ModelSerializer):
+    user = CharField()
+    senha = CharField(allow_blank=True, read_only=True)
     class Meta:
         model = Escola
         fields = (
