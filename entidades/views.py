@@ -7,7 +7,7 @@ from rest_framework.permissions import AllowAny
 from django.db import models
 from .serializers import AlunoSerializer, AvaliacaoSerializer, AlunoSerializer, ObjetivoSerializer, CampoExperienciaSerializer, EscolaSerializer, ProfessorSerializer, TurmaSerializer, LoginEscolaSerializer
 from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Professor, Turma
-
+from django.db.models import Q
 
 class EscolaViewSet(viewsets.ModelViewSet):
     queryset = Escola.objects.all()
@@ -43,7 +43,10 @@ class LoginEscolaViewAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         data = request.data
-        serializer = LoginEscolaSerializer(data=data)
+        escola = Escola.objects.filter(
+            'id'
+        )
+        serializer = LoginEscolaSerializer(escola)
         if serializer.is_valid(raise_exception=True):
             new_data = serializer.data, 
             return Response(new_data, status=HTTP_200_OK)
