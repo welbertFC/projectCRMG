@@ -133,7 +133,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             raise ValidationError("o usuario não é valido")
        
         if user_obj:
-            if not user_obj.check_password(senha):
+            if not user.check_password(senha):
                 raise ValidationError("senha incorreta")
         data["id"] = "este é o id"
 
