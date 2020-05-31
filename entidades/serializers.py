@@ -123,16 +123,9 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         if not user:
             raise ValidationError("Usuario não encontrado")
 
-        user = Escola.objects.filter(
-                Q(user=user)
-            ).distinct()
-        if user.exists()  and user.count() ==1:
-            user = user.first()
-        else:
-            raise ValidationError("o usuario não é valido")
-
         senha = Escola.objects.filter(
-            Q(senha=senha)
+            Q(senha=senha) |
+            Q(user=user)
         ).distinct()
 
         if senha.exists() and senha.count() ==1:
@@ -140,6 +133,15 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         else:
             raise ValidationError("Senha invalida")
 
+        
+
+        if user.exists()  and user.count() ==1:
+            user = user.first()
+        else:
+            raise ValidationError("o usuario não é valido")
+
         return data
+
+        
 
 
