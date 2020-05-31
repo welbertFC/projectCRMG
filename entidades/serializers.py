@@ -1,6 +1,7 @@
 from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Professor, Turma
 from rest_framework import serializers
 from rest_framework.serializers import CharField, ValidationError
+from django.db.models import Q
 
 
 class EscolaSerializer(serializers.ModelSerializer):
@@ -115,6 +116,24 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         )
 
     def validate(self, data):
+        user = data.get("user", None)
+        user_obj = None
+        senha = data["senha"]
+
+        if not user:
+            raise ValidationError("Usuario não encontrado")
+
+        user = Escola.objects.filter(
+                Q(user=user)
+            ).distinct()
+        if user.exists() and user.count() ==1:
+            user_obj = user.first()
+        else:
+            raise ValidationError("o usuario não é valido")
+
+        if user_obj:
+            if not user_obj.chake_password(senha):
+                raise ValidationError("senha incorreta")
 
         return data
 
