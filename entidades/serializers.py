@@ -124,9 +124,9 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             raise ValidationError("senha não encontrado")
 
         validacao = Escola.objects.filter(
-            Q(user=user)|
-            Q(senha=senha)
+            Q(user=user)
         )
+        
 
         if validacao.exists() and validacao.count() ==1:
             validacao = validacao.first()
