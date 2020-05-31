@@ -140,13 +140,13 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         return data
     
     def get_id_escola(self, data):
-        id_escola = data.get("id",None)
+        id_escola = data.get("id")
 
         id_escola = Escola.objects.filter(
             Q(id=id_escola)
         )
 
-        return id_escola
+        return data
 
 
 
