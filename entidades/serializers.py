@@ -119,14 +119,9 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        
-        
-
-        if not senha:
-            raise ValidationError("senha não encontrado")
 
         validacao = Escola.objects.filter(
-            Q(user=user)|
+            Q(user=user),
             Q(senha=senha)
         ) 
 
