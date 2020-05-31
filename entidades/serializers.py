@@ -111,6 +111,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Escola
         fields = (
+            'id',
             'user',
             'senha'
         )
@@ -123,8 +124,8 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             raise ValidationError("senha não encontrado")
 
         validacao = Escola.objects.filter(
-            Q(senha=senha) |
-            Q(user=user)
+            Q(user=user) |
+            Q(senha=senha)
         )
 
         if validacao.exists() and validacao.count() ==1:
