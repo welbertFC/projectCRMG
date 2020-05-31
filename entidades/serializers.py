@@ -118,7 +118,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             'senha'
         )
 
-    def validate(self, data, obj):
+    def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
         id_escola = data.get("id_escola",None)
