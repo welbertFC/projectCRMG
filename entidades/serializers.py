@@ -128,14 +128,14 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             Q(user=user)
         ).distinct()
 
-        if senha.exists() and senha.count() ==1:
+        if senha.count() ==1:
             senha = senha.first()
         else:
             raise ValidationError("Senha invalida")
 
         
 
-        if user.exists()  and user.count() ==1:
+        if user.count() ==1:
             user = user.first()
         else:
             raise ValidationError("o usuario não é valido")
