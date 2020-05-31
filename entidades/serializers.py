@@ -146,7 +146,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             Q(id=id_escola)
         )
 
-        return data
+        return id_escola
 
 
 
