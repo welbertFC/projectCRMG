@@ -108,14 +108,11 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 class LoginEscolaSerializer(serializers.ModelSerializer):
     user = CharField(required=False, allow_blank=True)
     senha = CharField(required=False, allow_blank=True)
-    id_escola = serializers.SerializerMethodField()
     
     class Meta:
         model = Escola
         fields = (
-            'id',
             'user',
-            'id_escola',
             'senha'
         )
 
@@ -139,14 +136,6 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
 
         return data
     
-    def get_id_escola(self, data):
-        id_escola = data.get("id")
-
-        id_escola = Escola.objects.filter(
-            Q(id=id_escola)
-        )
-
-        return id_escola
 
 
 
