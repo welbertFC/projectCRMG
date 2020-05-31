@@ -125,7 +125,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
 
         senha = Escola.objects.filter(
             Q(senha=senha)
-        ).distinct()
+        )
 
         if senha.exists() and senha.count() ==1:
             senha = senha.first()
