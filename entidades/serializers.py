@@ -118,7 +118,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         user_obj = None
-        senha = data["senha"]
+        senha = data.get("senha", None)
        
 
         if not user:
@@ -127,15 +127,19 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         user = Escola.objects.filter(
                 Q(user=user)
             ).distinct()
-        if user.exists() and user.count() ==1:
+        if user.exists()  and user.count() ==1:
             user_obj = user.first()
         else:
             raise ValidationError("o usuario não é valido")
-       
-        if user_obj:
-            if not user.check_password(senha):
-                raise ValidationError("senha incorreta")
-        data["id"] = "este é o id"
+
+        senha = Escola.objects.filter(
+            Q(senha=senha)
+        ).distinct()
+
+        if senha.exists() and senha.count() ==1:
+            senha = senha.first()
+        else:
+            raise ValidationError("Senha invalida")
 
         return data
 
