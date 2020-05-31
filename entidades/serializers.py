@@ -111,7 +111,6 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Escola
         fields = (
-            'id',
             'user',
             'senha'
         )
@@ -131,7 +130,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         if validacao.exists() and validacao.count() ==1:
             validacao = validacao.first()
         else:
-            raise ValidationError("Usuario ou senha incorreto")
+            raise ValidationError("Usuario ou senha incorreto")    
 
         return data
 
