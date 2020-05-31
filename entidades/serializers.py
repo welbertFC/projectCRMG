@@ -108,7 +108,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 class LoginEscolaSerializer(serializers.ModelSerializer):
     user = CharField(required=False, allow_blank=True)
     senha = CharField(required=False, allow_blank=True)
-    id = CharField(required=False, allow_blank=True)
+    id_escola = CharField(required=False, allow_blank=True)
     class Meta:
         model = Escola
         fields = (
@@ -120,7 +120,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        id = data.get("id", None)
+        id_escola = data.get("id", None)
 
         if not senha:
             raise ValidationError("senha não encontrado")
@@ -129,14 +129,14 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             Q(user=user)
         )
 
-        id = Escola.objects.filter(
-            Q(id=id)
+        id_escola = Escola.objects.filter(
+            Q(id=id_escola)
         )
         
 
         if validacao.exists() and validacao.count() == 1:
             validacao = validacao.first()
-            id = id.first()
+            id_escola = id_escola.first()
         else:
             raise ValidationError("Usuario ou senha incorreto")
 
