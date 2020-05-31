@@ -104,8 +104,8 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         )
 
 class LoginEscolaSerializer(serializers.ModelSerializer):
-    user = CharField()
-    senha = CharField(allow_blank=True, read_only=True)
+    user = CharField(required=False, allow_blank=True)
+    senha = CharField()
     class Meta:
         model = Escola
         fields = (
@@ -113,5 +113,9 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             'user',
             'senha'
         )
+
+    def validate(self, data):
+
+        return data
 
 
