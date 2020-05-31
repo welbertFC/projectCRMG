@@ -113,7 +113,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Escola
         fields = (
-            'id_escola',
+            'id',
             'user',
             'senha'
         )
@@ -121,7 +121,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        id_escola = data.get("id_escola",None)
+        id_escola = data.get("id",None)
         
 
         if not senha:
