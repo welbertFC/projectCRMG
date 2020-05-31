@@ -108,11 +108,10 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 class LoginEscolaSerializer(serializers.ModelSerializer):
     user = CharField(required=False, allow_blank=True)
     senha = CharField(required=False, allow_blank=True)
-    id = CharField(required=False, allow_blank=True)
+    
     class Meta:
         model = Escola
         fields = (
-            'id',
             'user',
             'senha'
         )
@@ -125,8 +124,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             raise ValidationError("senha não encontrado")
 
         validacao = Escola.objects.filter(
-            Q(user=user)|
-            Q(id=id)
+            Q(user=user)
         ) 
 
         if validacao.exists() and validacao.count() == 1:
