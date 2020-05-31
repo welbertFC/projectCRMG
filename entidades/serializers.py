@@ -112,7 +112,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Escola
         fields = (
-            'id',
+            'id_escola',
             'user',
             'senha'
         )
