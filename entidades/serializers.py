@@ -116,6 +116,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'user',
+            'id_escola',
             'senha'
         )
 
