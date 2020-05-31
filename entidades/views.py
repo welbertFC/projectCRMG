@@ -44,8 +44,8 @@ class LoginEscolaViewAPIView(APIView):
     def post(self, request, *args, **kwargs):
         data = request.data
         serializer = LoginEscolaSerializer(data=data)
-        escola = Escola.objects.all()
-        serializer_escola = EscolaSerializer(escola)
+        queryset = Escola.objects.all()
+        serializer_escola = EscolaSerializer(queryset)
         if serializer.is_valid(raise_exception=True):
             new_data = serializer.data, serializer_escola.data
             return Response(new_data, status=HTTP_200_OK)
