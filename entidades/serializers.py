@@ -130,9 +130,17 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         else:
             raise ValidationError("o usuario não é valido")
 
-        if user_obj:
-            if not user_obj.chek_password(senha):
-                raise ValidationError("senha incorreta")
+        senha = Escola.objects.filter(
+                Q(senha=senha)
+            ).distinct()
+        if senha.exists() and senha.count() ==1:
+            senha = senha.first()    
+        else:
+            raise ValidationError("A senha não é valido")
+       
+        #if user_obj:
+            #if not user_obj.chek_password(senha):
+                #raise ValidationError("senha incorreta")
 
         return data
 
