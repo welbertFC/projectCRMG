@@ -121,7 +121,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        id = data.get("id")
+        id = data.get("id", None)
 
         validacao = Escola.objects.filter(
             Q(user=user),
