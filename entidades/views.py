@@ -46,7 +46,7 @@ class LoginEscolaViewAPIView(APIView):
         data = request.data
         serializer = LoginEscolaSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
-            new_data = Escola.objects.all(), 
+            new_data = EscolaSerializer.objects.all(), 
             return Response(new_data, status=HTTP_200_OK)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
     
