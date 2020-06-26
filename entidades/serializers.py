@@ -121,12 +121,12 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        id = data.get("id", None)
+        id = data.get("id")
 
         validacao = Escola.objects.filter(
             Q(user=user),
             Q(senha=senha),
-            Q(id=id)
+            Q(id)
         ) 
 
         if validacao.exists() and validacao.count() == 1:
