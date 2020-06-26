@@ -131,8 +131,16 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     
         final = Escola.objects.filter(
 
-            'id',
+          'id',
+            'nome',
+            'endereco',
+            'diretor',
+            'cnpj',
+            'telefone',
+            'email',
+            'tipo',
             'user',
+            'criacao',
             'senha'
         )
 
