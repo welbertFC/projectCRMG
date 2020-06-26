@@ -108,7 +108,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 class LoginEscolaSerializer(serializers.ModelSerializer):
     user = CharField(required=False, allow_blank=True)
     senha = CharField(required=False, allow_blank=True)
-    ids = CharField(required=False, allow_blank=True)
+    id = CharField(required=False, allow_blank=True)
     
     class Meta:
         model = Escola
@@ -121,12 +121,12 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        ids = data.get("id", None)
+        id = data.get("id", None)
 
         validacao = Escola.objects.filter(
             Q(user=user),
             Q(senha=senha),
-            Q(ids)
+            Q(id)
             
         ) 
     
