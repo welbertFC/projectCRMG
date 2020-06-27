@@ -106,54 +106,29 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         )
 
 class LoginEscolaSerializer(serializers.ModelSerializer):
-    id = CharField(required=False, allow_blank=True)
-    nome = CharField(required=False, allow_blank=True)
-    endereco = CharField(required=False, allow_blank=True)
-    diretor = CharField(required=False, allow_blank=True)
-    cnpj = CharField(required=False, allow_blank=True)
-    telefone = CharField(required=False, allow_blank=True)
-    email = CharField(required=False, allow_blank=True)
-    tipo = CharField(required=False, allow_blank=True)
     user = CharField(required=False, allow_blank=True)
-    criacao = CharField(required=False, allow_blank=True)
     senha = CharField(required=False, allow_blank=True)
-    
     
     class Meta:
         model = Escola
         fields = (
-             'id',
-            'nome',
-            'endereco',
-            'diretor',
-            'cnpj',
-            'telefone',
-            'email',
-            'tipo',
             'user',
-            'criacao',
-            'senha'
+            'senha',
+            'id'
         )
 
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        id = data.get("id", None)
 
         validacao = Escola.objects.filter(
             Q(user=user),
-            Q(senha=senha)    
+            Q(senha=senha)
         ) 
 
-        
-    
-
-
-
         if validacao.exists() and validacao.count() == 1:
-            
-           validacao = Escola.objects.get(senha=senha)
-           
+            validacao = validacao.first()
+
         else:
             raise ValidationError("Usuario ou senha incorreto")
 
