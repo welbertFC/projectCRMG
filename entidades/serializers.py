@@ -106,7 +106,7 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
         )
 
 class LoginEscolaSerializer(serializers.ModelSerializer):
-    pk = CharField(required=False, allow_blank=True)
+    id = CharField(required=False, allow_blank=True)
     nome = CharField(required=False, allow_blank=True)
     endereco = CharField(required=False, allow_blank=True)
     diretor = CharField(required=False, allow_blank=True)
@@ -138,7 +138,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = data.get("user", None)
         senha = data.get("senha", None)
-        pk = data.get("id", None)
+        id = data.get("id", None)
 
         validacao = Escola.objects.filter(
             Q(user=user),
