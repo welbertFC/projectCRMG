@@ -151,7 +151,8 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         )
     
 
-        if validacao.exists() and validacao.count() == 1:
+        if validacao.count() == 1:
+            #validacao.exists() and 
             #validacao = validacao.first()
            validacao = validacao.first()
            
