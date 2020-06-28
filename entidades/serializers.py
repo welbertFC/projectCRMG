@@ -127,7 +127,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         validacao = Escola.objects.filter(
             Q(user=user),
             Q(senha=senha),
-            Q(pk)
+            
         ) 
 
         if validacao.exists() and validacao.count() == 1:
