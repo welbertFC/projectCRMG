@@ -129,7 +129,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             Q(senha=senha),
         ) 
 
-        escola_pk = Escola.object.get(pk)
+        escola_pk = Escola.objects.get(pk)
 
         if validacao.exists() and validacao.count() == 1:
             #validacao = validacao.first()
