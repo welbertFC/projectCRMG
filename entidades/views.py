@@ -13,9 +13,21 @@ class EscolaViewSet(viewsets.ModelViewSet):
     queryset = Escola.objects.all()
     serializer_class = EscolaSerializer
 
+    @action(detail=True, methods=['get'])
+    def professores(self, request,pk=None):
+        professores = Professor.objects.filter(professore_id=pk)
+        serializer = ProfessorSerializer(professores, many=True)
+        return Response(serializer.data)
+
 class ProfessorViewSet(viewsets.ModelViewSet):
     queryset = Professor.objects.all()
     serializer_class = ProfessorSerializer
+
+    @action(detail=True, methods=['get'])
+    def alunos(self, request,pk=None):
+        alunos = Aluno.objects.filter(alunos_id=pk)
+        serializer = AlunoSerializer(alunos, many=True)
+        return Response(serializer.data)
 
 class TurmaViewSet(viewsets.ModelViewSet):
     queryset = Turma.objects.all()
@@ -24,6 +36,12 @@ class TurmaViewSet(viewsets.ModelViewSet):
 class AlunoViewSet(viewsets.ModelViewSet):
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
+
+    @action(detail=True, methods=['get'])
+    def avaliacoes(self, request,pk=None):
+        avaliacoes = Avaliacao.objects.filter(avaliacoes_id=pk)
+        serializer = AvaliacaoSerializer(avaliacoes, many=True)
+        return Response(serializer.data)
 
 class CampoExperienciaViewSet(viewsets.ModelViewSet):
     queryset = CampoExperiencia.objects.all()
