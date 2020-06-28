@@ -125,12 +125,12 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         id = data.get("id", None)
 
 
-        validacao = Escola.objects.filter(
+        validacao = Escola.objects.put(
             Q(user=user),
             Q(senha=senha)
         ) 
 
-        escola_pk = Escola.objects.get(user=user)
+        escola_pk = Escola.objects.put(user=user)
 
         if validacao.exists() and validacao.count() == 1:
             #validacao = validacao.first()
