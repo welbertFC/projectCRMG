@@ -16,7 +16,7 @@ class EscolaViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def professores(self, request,pk=None):
-        professores = Professor.objects.filter(professor_id=pk)
+        professores = Professor.objects.filter(id=pk)
         serializer = ProfessorSerializer(professores, many=True)
         return Response(serializer.data)
 
@@ -26,7 +26,7 @@ class ProfessorViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def alunos(self, request,pk=None):
-        alunos = Aluno.objects.filter(aluno_id=pk)
+        alunos = Aluno.objects.filter(id=pk)
         serializer = AlunoSerializer(alunos, many=True)
         return Response(serializer.data)
 
@@ -40,7 +40,7 @@ class AlunoViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['get'])
     def avaliacoes(self, request,pk=None):
-        avaliacoes = Avaliacao.objects.filter(avaliacao_id=pk)
+        avaliacoes = Avaliacao.objects.filter(id=pk)
         serializer = AvaliacaoSerializer(avaliacoes, many=True)
         return Response(serializer.data)
 
