@@ -18,6 +18,7 @@ class EscolaAdmin(admin.ModelAdmin):
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
     list_display = (
+        'id'
         'escola',
         'nome',
         'cpf',
