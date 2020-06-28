@@ -4,6 +4,7 @@ from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Profes
 @admin.register(Escola)
 class EscolaAdmin(admin.ModelAdmin):
     list_display = (
+            'id',
             'nome',
             'endereco',
             'diretor',
@@ -18,7 +19,6 @@ class EscolaAdmin(admin.ModelAdmin):
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
     list_display = (
-        'id'
         'escola',
         'nome',
         'cpf',
