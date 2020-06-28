@@ -142,7 +142,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
             raise ValidationError("Usuario ou senha incorreto")
 
 
-        return data
+        return data['id']
     
 
 
