@@ -65,7 +65,7 @@ class Aluno(Base):
     nome = models.CharField(max_length=300)
     matricula = models.CharField(max_length=30)
     datanasc = models.DateField()
-    sexo = models.CharField(max_length=10)
+    sexo = models.CharField(max_length=30)
     nome_responsavel = models.CharField(max_length=300)
     telefone_responsavel = models.CharField(max_length=45)
 
@@ -106,7 +106,7 @@ class Avaliacao(Base):
     aluno = models.ForeignKey(Aluno, related_name='avaliacoes', on_delete=models.PROTECT)
     campo_experiencia = models.ForeignKey(CampoExperiencia, related_name='avaliacoes', on_delete=models.PROTECT)
     objetivo = models.ForeignKey(Objetivo, related_name='avaliacoes', on_delete=models.PROTECT)
-    avaliacao = models.CharField(max_length=30)
+    avaliacao = models.CharField(max_length=40)
     observacao = models.TextField()
 
     class Meta:

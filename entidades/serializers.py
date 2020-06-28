@@ -140,6 +140,40 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         return data['id']
     
 
+class LoginProfessorSerializer(serializers.ModelSerializer):
+    id = CharField(allow_blank=True, read_only=True)
+    user = CharField(required=False, allow_blank=True)
+    senha = CharField(required=False, allow_blank=True)
+
+    class Meta:
+        model = Professor
+        fields = (
+            'id',
+            'user',
+            'senha'
+        )
+    
+    def validate(self, data):
+        user = data.get("user", None)
+        senha = data.get("senha", None)
+        id = data.get("id", None)
+
+
+        validacao = Professor.objects.filter(
+            Q(user=user),
+            Q(senha=senha)
+        ) 
+
+        if validacao.exists() and validacao.count() == 1:
+           data['id'] = validacao.first()
+
+        else:
+            raise ValidationError("Usuario ou senha incorreto")
+
+        return data['id']
+
+        
+    
 
 
 

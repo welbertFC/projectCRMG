@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib import admin
 from rest_framework.routers import SimpleRouter
 from entidades.views import EscolaViewSet, ProfessorViewSet, TurmaViewSet, AlunoViewSet, CampoExperienciaViewSet, ObjetivoViewSet, AvaliacaoViewSet
-from .views import LoginEscolaViewAPIView
+from .views import LoginEscolaViewAPIView, LoginProfessorViewAPIView
 
 router = SimpleRouter()
 router.register('escola', EscolaViewSet)
@@ -16,4 +16,5 @@ router.register('avaliacao', AvaliacaoViewSet)
 
 urlpatterns = [
     path('loginescola/', LoginEscolaViewAPIView.as_view(), name='loginescola'),
+    path('loginprofessor/', LoginProfessorViewAPIView.as_view(), name='loginprofessor'),
  ]

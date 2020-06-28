@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST 
 from rest_framework.permissions import AllowAny 
 from django.db import models
-from .serializers import AlunoSerializer, AvaliacaoSerializer, AlunoSerializer, ObjetivoSerializer, CampoExperienciaSerializer, EscolaSerializer, ProfessorSerializer, TurmaSerializer, LoginEscolaSerializer
+from .serializers import AlunoSerializer, AvaliacaoSerializer, AlunoSerializer, ObjetivoSerializer, CampoExperienciaSerializer, EscolaSerializer, ProfessorSerializer, TurmaSerializer, LoginEscolaSerializer, LoginProfessorSerializer
 from .models import Aluno, Avaliacao, Objetivo, CampoExperiencia, Escola, Professor, Turma
 from django.db.models import Q
 
@@ -44,6 +44,18 @@ class LoginEscolaViewAPIView(APIView):
     def post(self, request, *args, **kwargs):
         data = request.data
         serializer = LoginEscolaSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            new_data = serializer.data, 
+            return Response(new_data, status=HTTP_200_OK)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+class LoginProfessorViewAPIView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = LoginProfessorSerializer
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        serializer = LoginProfessorSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             new_data = serializer.data, 
             return Response(new_data, status=HTTP_200_OK)
