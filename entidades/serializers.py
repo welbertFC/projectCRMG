@@ -140,7 +140,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         else:
             raise ValidationError("Usuario ou senha incorreto")
 
-        data['id'] = Escola.objects.get(id)
+        data['id'] = Escola.objects.filter(pk=id)
 
         return data
     
