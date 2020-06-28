@@ -121,7 +121,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         user = data.get("user", None)
         senha = data.get("senha", None)
 
-        validacao = Escola.objects.filter(
+        validacao = Escola.objects.get(
             Q(user=user),
             Q(senha=senha)
         ) 
