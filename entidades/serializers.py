@@ -115,7 +115,7 @@ class LoginEscolaSerializer(serializers.ModelSerializer):
         fields = (
             'user',
             'senha',
-            'pk'
+            'id'
         )
 
     def validate(self, data):
